@@ -1,11 +1,23 @@
-<form>
+<form (ngSubmit)="submit()" [formGroup]="momentForm" #formDir="ngForm"> 
+<!-- diretiva ngsubmit que chama a função de submit para acessar processar dados para o service. -->
+<!-- diretiva formGroup dos modulos de reactiveform importado, entre "" fina o nome do formulario, deve ser criado no component -->
+<!-- declarar onde é o formulario #formDir-->
     <div class="form-group">
         <label for="title">Titulo:</label>
-        <input type="text" placeholder="Coloque um título..." required>
+        <input type="text" placeholder="Coloque um título..." formControlName="title" required>
+        <!-- formControlName usado para dar nome ao atributo, e é linkado ao formulario que é criado no component-->
+        <div *ngIf="title.invalid && formDir.submitted" class="validation-error">
+            <!-- validando formDir.submitted, para so aparecer quando o submit for pressionado -->
+            <p *ngIf="title.errors?.['required']">O título é obrigatório!</p> 
+            <!-- criado ngif na mensagem de erro, para que so apareça quando o erro for o que é esperado "required" -->
+        </div>
     </div>
     <div class="form-group">
         <label for="description">Descrição:</label>
-        <textarea placeholder="O que aconteceu lá?" required></textarea>
+        <textarea placeholder="O que aconteceu lá?" formControlName="description" required></textarea>
+        <div *ngIf="description.invalid && formDir.submitted" class="validation-error">
+            <p *ngIf="description.errors?.['required']">A descrição é obrigatória</p>
+        </div>
     </div>
     <div class="form-group">
         <label for="image">Coloque a foto que mais marcou o momento:</label>
