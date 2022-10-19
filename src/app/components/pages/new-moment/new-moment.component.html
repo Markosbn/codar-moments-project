@@ -1,2 +1,6 @@
 <h2>Compartilhe o seu <span>Momento</span>!</h2>
-<app-moment-form [btnText]="btnText"></app-moment-form>
+<app-moment-form
+  [btnText]="btnText"
+  (onSubmit)="createHandler($event)" 
+></app-moment-form>
+<!-- Declarado o listener do evento filho, aqui no pai, para que quando o evento onSubmit for emitido o hadler receber os dados do moment -->
