@@ -1,0 +1,12 @@
+<div class="message" *ngIf="messagesService.message">
+    <!-- apenas sera impressa quando houver mensagem -->
+  <div class="message-header">
+    <h2>Mensagem do Sistema:</h2>
+    <button class="clear" (click)="messagesService.clear()"> 
+        <!-- diretriva de click criara para chamar o clear, para limpar e fechar a mensagem -->
+      <fa-icon [icon]="faTimes"></fa-icon>
+    </button>
+  </div>
+  <p>{{ messagesService.message }}</p>
+  <!-- mesagem que sera impressa vindo do atributo do serviço de mensagem -->
+</div>
