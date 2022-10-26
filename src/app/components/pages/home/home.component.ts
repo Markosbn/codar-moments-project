@@ -11,9 +11,12 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  allMoments: Moment[] = []; // array para listar tudo
-  moments: Moment[] = []; // array para filtrar
+  allMoments: Moment[] = []; // array para listar tudo que segura todos os momentos
+  moments: Moment[] = []; // array para filtrar que é exibido
   baseApiUrl = environment.baseApiUrl;
+
+  faSearch = faSearch;
+  searchTerm: string = '';
   
   constructor(private momentService: MomentService) { } //declarado service para requisitar os endpoints da api
 
@@ -28,6 +31,15 @@ export class HomeComponent implements OnInit {
       this.allMoments = data;
       this.moments = data;
     })
+  }
+
+  onSearch(event: Event){
+    const target = event.target as HTMLInputElement; //extraido target do evento para ser extraido o value
+    const value = target.value; // extraido o value do target extraido anteriormente
+
+    this.moments = this.allMoments.filter(moment => { //feito com que a lista que é exibida recebe a lista de todos os momentos filtrada
+      return moment.title.toLowerCase().includes(value.toLowerCase()); // filtro é feito no campo title, comparando o valor passado, todos campos setados com lowercase para não ter erro na busca
+    }); // esta busca foi feita como uma busca so do front, filtrando as listas ja consultadas anteriormente no back
   }
 
 }

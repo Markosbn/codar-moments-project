@@ -1,6 +1,13 @@
 <div class="home-container">
   <h1>Veja o que estão compartilhando</h1>
-  <!-- Form de busca -->
+  <div class="search-container">
+    <form>
+      <fa-icon [icon]="faSearch"></fa-icon> 
+      <!-- declarado icon para usar o icone faSearch definido no componente -->
+      <input type="text" placeholder="Ou busque por um momento..." (input)="onSearch($event)">
+        <!-- declarado input com event ao digitar para buscar dentro da lista de momentos que existe -->
+    </form>
+  </div>
   <div *ngIf="moments.length > 0; else noMoments">
     <div class="moments-container">
       <div class="moment" *ngFor="let moment of moments">
