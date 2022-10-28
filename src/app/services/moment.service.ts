@@ -19,8 +19,12 @@ export class MomentService {
     return this.http.get<Response<Moment[]>>(this.apiUrl);
   }
 
+  getMoment(id: number): Observable<Response<Moment>> { //criado metodo para busca do id individual
+    return this.http.get<Response<Moment>>(`${this.apiUrl}/${id}`);
+  }
+
   //criado metodo para consumir a api, service chamando a url definida atraves do environment
   createMoment(formData: FormData): Observable<FormData> {
-    return this.http.post<FormData>(this.apiUrl, formData);
+    return this.http.post<FormData>(this.apiUrl, formData); //semantica da requisição (url, body)
   }
 }
