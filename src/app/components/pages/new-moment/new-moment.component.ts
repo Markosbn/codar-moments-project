@@ -20,7 +20,7 @@ export class NewMomentComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  async createHandler(moment: Moment) {
+  async createHandler(moment: Moment) { //async para esperar o await acontecer.
     //metodo que ira rodar quando o filho enviar os dados, declarado como assincrono pois ira aguardar o retorno da api, então ira rodar de forma separada
     const formData = new FormData(); //formData é usado para enviar formularios que contem imagens, ele não nescessita headears
 

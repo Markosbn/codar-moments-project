@@ -2,6 +2,8 @@
 <!-- diretiva ngsubmit que chama a função de submit para acessar processar dados para o service. -->
 <!-- diretiva formGroup dos modulos de reactiveform importado, entre "" fina o nome do formulario, deve ser criado no component -->
 <!-- declarar onde é o formulario #formDir-->
+<input type="hidden" formControlName="id">
+<!-- declarado campo do id como escondido, para apenas ter ele na hora de fazer a edição -->
     <div class="form-group">
         <label for="title">Titulo:</label>
         <input type="text" placeholder="Coloque um título..." formControlName="title" required>
