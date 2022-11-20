@@ -31,4 +31,8 @@ export class MomentService {
   updateMoment(id: number, formData: FormData): Observable<FormData> { //metodo para update do momento
     return this.http.put<FormData>(`${this.apiUrl}/${id}`, formData);
   }
+
+  removeMoment(id: number) {
+    return this.http.delete(`${this.apiUrl}/${id}`) //metodo de delação 
+  }
 }
