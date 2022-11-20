@@ -10,6 +10,7 @@ import { Moment } from 'src/app/interfaces/Moments';
 export class MomentFormComponent implements OnInit {
   @Output() onSubmit = new EventEmitter<Moment>(); // declarado o evento para ser emitido
   @Input() btnText!: string;
+  @Input() momentData: Moment | null = null; // | para receber um ou o outro
 
   momentForm!: FormGroup; // declarado formGroup com o nome do formGroup declarado no template 
   // "!" usado para informar que o objeto ira existir
