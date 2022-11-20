@@ -27,4 +27,8 @@ export class MomentService {
   createMoment(formData: FormData): Observable<FormData> {
     return this.http.post<FormData>(this.apiUrl, formData); //semantica da requisição (url, body)
   }
+
+  updateMoment(id: number, formData: FormData): Observable<FormData> { //metodo para update do momento
+    return this.http.put<FormData>(`${this.apiUrl}/${id}`, formData);
+  }
 }

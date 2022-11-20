@@ -18,13 +18,22 @@ export class MomentFormComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void { // usado para iniciar as funções do angular como o formulario
-    this.momentForm = new FormGroup({
-      id: new FormControl(''), //Declarar o atributo com FormControl para ser "controlovel", e ser possivel fazer as validações.
-      title: new FormControl('', [Validators.required]), //[Validators.required] define que o campo é obrigatorio
-      description: new FormControl('', [Validators.required]),
-      image: new FormControl(''),
-    })
-  // declaração do FormGroup com o nome dado no template, e aqui no component, e dentro dele é declarado todos os atributos que o formulario tem para que seja controlado de forma dinamica pelo reactive form
+    if (this.momentData){//Declarado um if, para quando o componente for iniciado pelo editar, assim vindo informação, o mesmo preencher os dados em tela.
+      this.momentForm = new FormGroup({
+        id: new FormControl(this.momentData.id), // em cada objeto feito para receber os dados passados do outro componente
+        title: new FormControl(this.momentData.title, [Validators.required]), 
+        description: new FormControl(this.momentData.description, [Validators.required]),
+        image: new FormControl(''),
+      })
+    } else {
+      this.momentForm = new FormGroup({
+        id: new FormControl(''), //Declarar o atributo com FormControl para ser "controlovel", e ser possivel fazer as validações.
+        title: new FormControl('', [Validators.required]), //[Validators.required] define que o campo é obrigatorio
+        description: new FormControl('', [Validators.required]),
+        image: new FormControl(''),
+      })
+      // declaração do FormGroup com o nome dado no template, e aqui no component, e dentro dele é declarado todos os atributos que o formulario tem para que seja controlado de forma dinamica pelo reactive form
+    }  
   }
 
   get title() { //criado get como objeto para capturar o atributo do form criado acima
@@ -47,6 +56,6 @@ export class MomentFormComponent implements OnInit {
 
     console.log(this.momentForm.value)
 
-    this.onSubmit.emit(this.momentForm.value); // emitindo evendo com os dados do formulario para o componente pai
+    this.onSubmit.emit(this.momentForm.value); // emitindo evento com os dados do formulario para o componente pai
   }
 }
